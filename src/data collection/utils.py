@@ -13,3 +13,4 @@ def remove_html_tags(text):
             tag.unwrap()  # Remove the tag, keep its contents
 
     return str(soup)
+
