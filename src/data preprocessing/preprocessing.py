@@ -35,7 +35,7 @@ def preprocess_data(file_name, questions_col, answers_col, max_sequence_length=1
   # convert to dataset and select num_samples (i.e. 1000) record for now (considering memory resource)
   dataset = Dataset.from_pandas(df_filtered)
 
-  if num_samples: 
+  if num_samples and len(dataset) >= num_samples: 
     dataset = dataset.select(range(num_samples))
     
   return dataset
