@@ -12,12 +12,17 @@ type ChatbotProps = {
   open: boolean;
 };
 
+export type MessageEntity = {
+  role: string;
+  message: string;
+};
+
 const Chatbot = (props: ChatbotProps) => {
   const { open } = props;
   const { chatId } = useParams();
   const chatNumber = parseInt(chatId || "0");
 
-  const [conversation, setConversation] = useState<string[]>([]);
+  const [conversation, setConversation] = useState<MessageEntity[]>([]);
   const [query, setQuery] = useState("");
   const [disabled, setDisabled] = useState(false);
 
@@ -25,13 +30,19 @@ const Chatbot = (props: ChatbotProps) => {
     e.preventDefault();
     setDisabled(true);
 
-    setConversation((prevConversation) => [...prevConversation, query]);
+    setConversation((prevConversation) => [
+      ...prevConversation,
+      { role: "User", message: query },
+    ]);
     setQuery("");
 
     sendQuery(query)
       .then((message) => {
         setTimeout(() => {
-          setConversation((prevConversation) => [...prevConversation, message]);
+          setConversation((prevConversation) => [
+            ...prevConversation,
+            { role: "Assistant", message: message },
+          ]);
           setDisabled(false);
         }, 2000);
       })
@@ -41,7 +52,10 @@ const Chatbot = (props: ChatbotProps) => {
       });
 
     // setTimeout(() => {
-    //   setConversation((prevConversation) => [...prevConversation, "Response"]);
+    //   setConversation((prevConversation) => [
+    //     ...prevConversation,
+    //     { role: "Assistant", message: "Response" },
+    //   ]);
     //   setDisabled(false);
     // }, 2000);
   };

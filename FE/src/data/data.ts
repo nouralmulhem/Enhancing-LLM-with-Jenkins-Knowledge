@@ -2,40 +2,57 @@ export const chatHistory = [
   {
     id: 1,
     history: [
-      `
-      I've looked all over for this answer but cannot find it, as most of the answers are how to add JDK to Jenkins for usage within a test. I'm looking for how to ensure Jenkins itself is using OpenJDK 11 that I have installed and not the older JDK 8.
-      I have checked the <code>Jenkins.xml</code> and it does point to OpenJDK 11 as well as the <code>%java_home%</code> and PATH in the system environment are pointed to the correct locations.
-      When I check System Properties, I still see things related to Java 8 (<code>java.home</code>, <code>java.specification.version</code>, etc.)
-      I have no idea where else it could be stored at to change this.
-      `,
-      `In your Jenkins UI select Manage Jenkins â†’ Status Information â†’ System Information (displayed as System Properties then; in Jenkins 2.289.3, at least) â†’ search for java.runtime.version or others to look for hints what's possibly going wrong.`,
+      {
+        role: "User",
+        message: `
+          I've looked all over for this answer but cannot find it, as most of the answers are how to add JDK to Jenkins for usage within a test. I'm looking for how to ensure Jenkins itself is using OpenJDK 11 that I have installed and not the older JDK 8.
+          I have checked the <code>Jenkins.xml</code> and it does point to OpenJDK 11 as well as the <code>%java_home%</code> and PATH in the system environment are pointed to the correct locations.
+          When I check System Properties, I still see things related to Java 8 (<code>java.home</code>, <code>java.specification.version</code>, etc.)
+          I have no idea where else it could be stored at to change this.
+          `,
+      },
+      {
+        role: "Assistant",
+        message: `In your Jenkins UI select Manage Jenkins â†’ Status Information â†’ System Information (displayed as System Properties then; in Jenkins 2.289.3, at least) â†’ search for java.runtime.version or others to look for hints what's possibly going wrong.`,
+      },
     ],
   },
   {
     id: 2,
     history: [
-      `
+      {
+        role: "User",
+        message: `
       pre-commit is a great tool and id like to incorporate it into jenkins pipelines just to make sure someone didn't try to skip it during committing to the repo.
       so my questions are:
 
       what are the best practices to initialize pre-commit? (just initialize it as i would in the repo? the website offers examples for some other CI integrations but not jenkins)
       how can i say to jenkins to stop the build if any of the tests performed by pre-commit fails? (exit code? which one would be <code>success</code> or <code>fail</code>?
       `,
-      `
+      },
+      {
+        role: "Assistant",
+        message: `
       as the docs indicate the best way to run <code>pre-commit</code> in a CI system is with <code>pre-commit run</code>, usually <code>pre-commit run --all-files --show-diff-on-failure</code>
       this will exit nonzero which should fail your pipeline as desired
 
       disclaimer: I'm the creator of pre-commit
       `,
+      },
     ],
   },
   {
     id: 3,
     history: [
-      `
+      {
+        role: "User",
+        message: `
       what is Jenkins?
       `,
-      `
+      },
+      {
+        role: "Assistant",
+        message: `
       Jenkins is an open-source automation server widely used for continuous integration and continuous delivery (CI/CD). It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration and continuous delivery.
 
         Here are some key features of Jenkins:
@@ -54,6 +71,7 @@ export const chatHistory = [
 
         Jenkins is used by many organizations to automate their development processes, ensuring faster and more reliable software delivery.
         `,
+      },
     ],
   },
 ];

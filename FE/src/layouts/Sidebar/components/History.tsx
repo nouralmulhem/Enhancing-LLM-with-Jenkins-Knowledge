@@ -20,7 +20,7 @@ const History = () => {
     () =>
       chatHistory.map((chat) => ({
         id: chat.id,
-        text: chat.history[0].slice(0, 25) + "..",
+        text: chat.history[0].message.slice(0, 25) + "..",
       })),
     []
   );

@@ -9,11 +9,11 @@ const LandingBody = () => {
       <Typography variant="h2" fontWeight="bold">
         Welcome! to{" "}
         <Typography variant="h2" fontWeight="bold" color="primary">
-          Jenki{" "}
+          JenAi{" "}
         </Typography>
       </Typography>
       <Typography variant="h5">
-        Jenki is your assistant today! Jenki was a GSoC'24 project by Jenkins.
+        JenAi is your assistant today! JenAi was a GSoC'24 project by Jenkins.
         The project was to build a chatbot for specific Jenkins knowledge that
         can help users with their queries.
       </Typography>

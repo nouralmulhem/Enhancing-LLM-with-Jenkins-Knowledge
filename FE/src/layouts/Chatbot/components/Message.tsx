@@ -1,42 +1,34 @@
-import Paper from "@mui/material/Paper";
-import { Avatar, Box, Typography } from "@mui/material";
-import { grey, pink } from "@mui/material/colors";
+import { Box, Typography } from "@mui/material";
+import { MessageEntity } from "../Chatbot";
+import { AssistantAvatar, MsgWrapper, UserAvatar } from "../styles";
 
 type MessageProps = {
   index: number;
-  msg: string;
+  msg: MessageEntity;
 };
 
 const Message = (props: MessageProps) => {
   const { index, msg } = props;
+  const isUser = msg.role === "User";
   return (
     <Box
       key={index}
       display={"flex"}
-      justifyContent={index % 2 === 0 ? "flex-start" : "flex-end"}
+      justifyContent={isUser ? "flex-start" : "flex-end"}
       alignItems={"center"}
       gap={2}
     >
-      {index % 2 === 0 && <Avatar sx={{ bgcolor: pink[500] }}>N</Avatar>}
+      {isUser && <UserAvatar>N</UserAvatar>}
 
-      <Paper
-        sx={{
-          p: 2,
-          display: "flex",
-          alignItems: "center",
-          width: "70%",
-          backgroundColor: grey[900],
-        }}
-      >
-        <Typography key={index}>{msg}</Typography>
-      </Paper>
+      <MsgWrapper>
+        <Typography key={index}>{msg.message}</Typography>
+      </MsgWrapper>
 
-      {index % 2 !== 0 && (
-        <Avatar
+      {!isUser && (
+        <AssistantAvatar
           alt="Remy Sharp"
           src="../../../../public/Jenkins_logo.svg"
           variant="rounded"
-          sx={{ height: 60, width: 40 }}
         />
       )}
     </Box>
