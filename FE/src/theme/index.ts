@@ -6,6 +6,12 @@ const theme = responsiveFontSizes(
     typography: {},
     palette: {
       mode: "dark",
+      primary: {
+        main: "#f50057",
+      },
+      secondary: {
+        main: "#000000",
+      },
     },
   })
 );

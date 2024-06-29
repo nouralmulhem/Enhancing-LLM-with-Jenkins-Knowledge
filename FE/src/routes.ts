@@ -1,3 +1,6 @@
+import Dashboard from "./pages/Dashboard";
+import Landing from "./pages/Landing";
+
 export type RouteSchema = {
   name: string;
   key: string;
@@ -7,13 +10,15 @@ export type RouteSchema = {
 
 export const routes: RouteSchema[] = [
   {
-    name: "Main",
-    key: "main",
-    route: "/main",
+    name: "Dashboard",
+    key: "dashboard",
+    route: "/dashboard/:chatId?",
+    component: Dashboard,
   },
   {
     name: "Landging",
     key: "landing",
     route: "/landing",
+    component: Landing,
   },
 ];
