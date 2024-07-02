@@ -6,10 +6,11 @@ import { useState } from "react";
 import Header from "../layouts/Header/Header";
 
 const Dashboard = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    // setOpen(true);
+    console.log("handleDrawerOpen");
   };
 
   const handleDrawerClose = () => {

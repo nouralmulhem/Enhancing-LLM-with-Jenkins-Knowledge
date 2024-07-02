@@ -78,42 +78,48 @@ const Chatbot = (props: ChatbotProps) => {
   return (
     <Main open={open}>
       <DrawerHeader />
-      <Container>
-        <Box
-          flexGrow={1}
-          width={"100%"}
-          height={"100%"}
-          gap={4}
-          display={"flex"}
-          flexDirection={"column"}
-          overflow={"auto"}
-          padding={2}
-        >
-          {conversation.map((msg, index) => (
-            <Message key={index} msg={msg} />
-          ))}
-          {loading && (
-            <Message
-              msg={{
-                role: "Assistant",
-                message: (
-                  <Box
-                    component="img"
-                    alt="Jenkins Logo"
-                    src="../../../public/3-dots-fade.svg"
-                  />
-                ),
-              }}
-            />
-          )}
-        </Box>
-        <Input
-          setQuery={setQuery}
-          query={query}
-          disabled={disabled}
-          onSubmit={onSubmit}
-        />
-      </Container>
+      <Box height={"100%"} display={"flex"} justifyContent={"center"}>
+        <Container>
+          <Box
+            flexGrow={1}
+            width={"100%"}
+            height={"100%"}
+            gap={4}
+            display={"flex"}
+            flexDirection={"column"}
+            overflow={"auto"}
+            padding={2}
+          >
+            {conversation.map((msg, index) => (
+              <Message key={index} msg={msg} />
+            ))}
+            {loading && (
+              <Message
+                msg={{
+                  role: "Assistant",
+                  message: (
+                    <Box
+                      component="img"
+                      alt="Jenkins Logo"
+                      src="../../../public/3-dots-fade.svg"
+                      sx={{
+                        filter:
+                          "invert(100%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%)",
+                      }}
+                    />
+                  ),
+                }}
+              />
+            )}
+          </Box>
+          <Input
+            setQuery={setQuery}
+            query={query}
+            disabled={disabled}
+            onSubmit={onSubmit}
+          />
+        </Container>
+      </Box>
     </Main>
   );
 };

@@ -5,6 +5,7 @@ import { grey, pink } from "@mui/material/colors";
 export const Container = styled(Paper)(({ theme }) => ({
   height: "100%",
   minWidth: "15%",
+  width: "60%",
   margin: 30,
   backgroundColor: theme.palette.secondary.main,
   color: "white",
