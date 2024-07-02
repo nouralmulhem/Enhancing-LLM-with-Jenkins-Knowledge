@@ -20,6 +20,7 @@ const LandingBody = () => {
 
       <ButtonsWrapper>
         <Button
+          aria-labels="Start free trial"
           color="primary"
           variant="contained"
           size="large"
@@ -29,6 +30,7 @@ const LandingBody = () => {
           Start free trial
         </Button>
         <Button
+          aria-labels="Learn more"
           color="secondary"
           variant="contained"
           size="large"

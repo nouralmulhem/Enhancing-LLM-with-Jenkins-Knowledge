@@ -45,6 +45,7 @@ const Header = (props: HeaderProps) => {
           </Box>
           <Box display={"flex"} gap={2}>
             <Button
+              aria-labels="Google Summer of Code"
               color="inherit"
               size="small"
               component={Link}
@@ -53,6 +54,7 @@ const Header = (props: HeaderProps) => {
               GSoC
             </Button>
             <Button
+              aria-labels="Jenkins Blog"
               color="primary"
               variant="contained"
               size="small"
