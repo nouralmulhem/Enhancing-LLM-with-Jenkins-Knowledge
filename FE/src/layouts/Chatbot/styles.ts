@@ -59,7 +59,7 @@ export const MsgWrapper = styled(Paper)(() => ({
   padding: 16,
   display: "flex",
   alignItems: "center",
-  width: "70%",
+  maxWidth: "70%",
   backgroundColor: grey[900],
 }));
 

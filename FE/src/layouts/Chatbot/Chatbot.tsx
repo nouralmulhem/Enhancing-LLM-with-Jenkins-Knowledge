@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import { Container, DrawerHeader, Main } from "./styles";
 import { Box } from "@mui/material";
-import { useEffect, useState } from "react";
-import { sendQuery } from "./server";
+import { ReactNode, useEffect, useState } from "react";
 
 import { chatHistory } from "../../data/data";
 import Input from "./components/Input";
 import Message from "./components/Message";
+import { sendQuery } from "./server";
 
 type ChatbotProps = {
   open: boolean;
@@ -14,7 +14,7 @@ type ChatbotProps = {
 
 export type MessageEntity = {
   role: string;
-  message: string;
+  message: ReactNode;
 };
 
 const Chatbot = (props: ChatbotProps) => {
@@ -25,6 +25,7 @@ const Chatbot = (props: ChatbotProps) => {
   const [conversation, setConversation] = useState<MessageEntity[]>([]);
   const [query, setQuery] = useState("");
   const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +36,7 @@ const Chatbot = (props: ChatbotProps) => {
       { role: "User", message: query },
     ]);
     setQuery("");
+    setLoading(true);
 
     sendQuery(query)
       .then((message) => {
@@ -44,10 +46,12 @@ const Chatbot = (props: ChatbotProps) => {
             { role: "Assistant", message: message },
           ]);
           setDisabled(false);
+          setLoading(false);
         }, 2000);
       })
       .catch((error) => {
         console.error("Error sending query:", error);
+        setLoading(false);
         setDisabled(false);
       });
 
@@ -56,6 +60,7 @@ const Chatbot = (props: ChatbotProps) => {
     //     ...prevConversation,
     //     { role: "Assistant", message: "Response" },
     //   ]);
+    //   setLoading(false);
     //   setDisabled(false);
     // }, 2000);
   };
@@ -85,8 +90,22 @@ const Chatbot = (props: ChatbotProps) => {
           padding={2}
         >
           {conversation.map((msg, index) => (
-            <Message key={index} index={index} msg={msg} />
+            <Message key={index} msg={msg} />
           ))}
+          {loading && (
+            <Message
+              msg={{
+                role: "Assistant",
+                message: (
+                  <Box
+                    component="img"
+                    alt="Jenkins Logo"
+                    src="../../../public/3-dots-fade.svg"
+                  />
+                ),
+              }}
+            />
+          )}
         </Box>
         <Input
           setQuery={setQuery}
