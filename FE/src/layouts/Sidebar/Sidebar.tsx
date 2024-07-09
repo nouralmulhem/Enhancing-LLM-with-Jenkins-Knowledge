@@ -8,6 +8,7 @@ import {
   ListItem,
   Typography,
   Box,
+  TextField,
 } from "@mui/material";
 import { ReactNode } from "react";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -87,7 +88,26 @@ const Sidebar = (props: SidebarProps) => {
         </IconButton>
       </DrawerHeader>
 
-      <History />
+      {/* <History /> */}
+      <Divider />
+      <TextField
+        id="outlined-multiline-static"
+        label="Personalize Here"
+        multiline
+        rows={8}
+        // defaultValue="Default Value"
+        placeholder="example: you are a therapist now, act accordingly!"
+        sx={{
+          width: "90%",
+          margin: "15px auto",
+          "& .MuiFormLabel-root": {
+            color: "unset",
+          },
+          "& .MuiInputLabel-shrink": {
+            color: "white",
+          },
+        }}
+      />
       <Divider />
       <List>
         {ControllersElements.map((item) => (

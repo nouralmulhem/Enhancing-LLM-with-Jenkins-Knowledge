@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Container, DrawerHeader, Main } from "./styles";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { ReactNode, useEffect, useState } from "react";
 
 import { chatHistory } from "../../data/data";
@@ -20,6 +20,7 @@ export type MessageEntity = {
 const Chatbot = (props: ChatbotProps) => {
   const { open } = props;
   const { chatId } = useParams();
+  const theme = useTheme();
   const chatNumber = parseInt(chatId || "0");
 
   const [conversation, setConversation] = useState<MessageEntity[]>([]);
@@ -104,6 +105,7 @@ const Chatbot = (props: ChatbotProps) => {
                       src="../../../public/3-dots-fade.svg"
                       sx={{
                         filter:
+                          theme.palette.mode === "dark" &&
                           "invert(100%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%)",
                       }}
                     />

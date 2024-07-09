@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { MessageEntity } from "../Chatbot";
 import { AssistantAvatar, MsgWrapper, UserAvatar } from "../styles";
+import PersonIcon from "@mui/icons-material/Person";
 
 type MessageProps = {
   msg: MessageEntity;
@@ -16,7 +17,11 @@ const Message = (props: MessageProps) => {
       alignItems={"center"}
       gap={2}
     >
-      {isUser && <UserAvatar>N</UserAvatar>}
+      {isUser && (
+        <UserAvatar>
+          <PersonIcon />
+        </UserAvatar>
+      )}
 
       <MsgWrapper>
         <Typography>{msg.message}</Typography>
