@@ -96,7 +96,6 @@ const Sidebar = (props: SidebarProps) => {
         label="Personalize Here"
         multiline
         rows={8}
-        // defaultValue="Default Value"
         placeholder="example: you are a therapist now, act accordingly!"
         sx={{
           width: "90%",

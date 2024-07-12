@@ -15,22 +15,3 @@ export const sendQuery = (query: string, personalization:string): Promise<string
       throw error;
     });
 };
-
-// export const sendQuery = (
-//   query: string,
-//   onMessage: (message: string) => void
-// ): void => {
-//   const eventSource = new EventSource(
-//     `${chatEndpoint}?query=${encodeURIComponent(query)}`
-//   );
-
-//   eventSource.onmessage = (event) => {
-//     const response = event.data;
-//     onMessage(response);
-//   };
-
-//   eventSource.onerror = (error) => {
-//     console.error("Error receiving response:", error);
-//     eventSource.close();
-//   };
-// };

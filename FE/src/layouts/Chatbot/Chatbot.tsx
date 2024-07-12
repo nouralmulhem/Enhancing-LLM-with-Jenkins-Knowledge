@@ -41,7 +41,6 @@ const Chatbot = (props: ChatbotProps) => {
     setQuery("");
     setLoading(true);
 
-    console.log(query, personalization);
     sendQuery(query, personalization)
       .then((message) => {
         setTimeout(() => {

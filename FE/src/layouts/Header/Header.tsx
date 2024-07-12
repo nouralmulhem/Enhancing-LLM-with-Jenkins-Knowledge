@@ -114,7 +114,6 @@ const Header = (props: HeaderProps) => {
           <Box display={"flex"} gap={2}>
             <Button
               aria-labels="Google Summer of Code"
-              // color="inherit"
               size="small"
               component={Link}
               to="https://summerofcode.withgoogle.com/"
@@ -124,7 +123,6 @@ const Header = (props: HeaderProps) => {
             </Button>
             <Button
               aria-labels="Jenkins Blog"
-              // color="primary"
               variant="contained"
               size="small"
               component={Link}
