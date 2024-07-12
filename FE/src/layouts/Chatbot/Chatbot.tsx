@@ -7,6 +7,7 @@ import { chatHistory } from "../../data/data";
 import Input from "./components/Input";
 import Message from "./components/Message";
 import { sendQuery } from "./server";
+import { usePersonalization } from "../../contexts/usePersonalization";
 
 type ChatbotProps = {
   open: boolean;
@@ -22,6 +23,7 @@ const Chatbot = (props: ChatbotProps) => {
   const { chatId } = useParams();
   const theme = useTheme();
   const chatNumber = parseInt(chatId || "0");
+  const { text: personalization } = usePersonalization();
 
   const [conversation, setConversation] = useState<MessageEntity[]>([]);
   const [query, setQuery] = useState("");
@@ -39,7 +41,8 @@ const Chatbot = (props: ChatbotProps) => {
     setQuery("");
     setLoading(true);
 
-    sendQuery(query)
+    console.log(query, personalization);
+    sendQuery(query, personalization)
       .then((message) => {
         setTimeout(() => {
           setConversation((prevConversation) => [

@@ -19,7 +19,7 @@ import HistoryIcon from "@mui/icons-material/History";
 import { drawerWidth } from "../../constants";
 import { useNavigate } from "react-router-dom";
 import { DrawerHeader } from "./styles";
-import History from "./components/History";
+import { usePersonalization } from "../../contexts/usePersonalization";
 
 type ControllersElement = {
   id: number;
@@ -48,6 +48,7 @@ type SidebarProps = {
 const Sidebar = (props: SidebarProps) => {
   const { open, handleDrawerClose } = props;
   const navigate = useNavigate();
+  const { handleUpdate } = usePersonalization();
 
   const handler = (id: number) => {
     switch (id) {
@@ -106,6 +107,9 @@ const Sidebar = (props: SidebarProps) => {
           "& .MuiInputLabel-shrink": {
             color: "white",
           },
+        }}
+        onChange={(e) => {
+          handleUpdate(e.target.value);
         }}
       />
       <Divider />
