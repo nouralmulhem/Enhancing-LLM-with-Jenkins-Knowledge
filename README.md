@@ -52,7 +52,7 @@ npm run dev
 
 ### Backend server setup
 
-- Install the <a href="https://github.com/nouralmulhem/Cipher-Sphere/blob/main/requirements.txt">needed packages</a>.</li>
+- Install the <a href="https://github.com/nouralmulhem/Enhancing-LLM-with-Jenkins-Knowledge/tree/main/BE/requirements.txt">needed packages</a>.</li>
 
 ```sh
 cd ./BE
@@ -77,8 +77,9 @@ py app.py
   </tr>
 </table>
 
+<br/>
 <a id ="License"></a>
 
 ## 🔒 License
 
-> **Note**: This software is licensed under MIT License, See [License](https://github.com/nouralmulhem/Cipher-Sphere/blob/main/LICENSE) for more information ©nouralmulhem.
+> **Note**: This software is licensed under MIT License, See [License](https://github.com/nouralmulhem/Enhancing-LLM-with-Jenkins-Knowledge/blob/main/LICENSE) for more information ©nouralmulhem.
