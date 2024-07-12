@@ -52,31 +52,3 @@ def chat():
 def test():
     return jsonify({'test': 'OK'})
 
-
-# def process_request(query):
-#     global history
-#     print('55', query)
-#     for response in llm_chain.invoke(query, stream=True):
-#         print('56',response)
-#         yield response
-#         history += f'Human: {query}\nAI: {response}\n'
-
-# @chatbot_bp.route('/chat', methods=['POST'])
-# def chat():
-#     data = request.json
-#     query = data.get('text', '')
-#     try:
-#         def generate():
-#             for response_part in process_request(query):
-#                 print('67',response_part)
-#                 yield f"data: {response_part}\n\n"
-        
-#         return Response(stream_with_context(generate()), content_type='text/event-stream')
-#     except Exception as e:
-#         logging.error("Error occurred in /chat endpoint", exc_info=True)
-#         return jsonify({"prediction": "error"})
-
-# @chatbot_bp.route('/test', methods=['GET'])
-# def test():
-#     return jsonify({'test': 'OK'})
-
