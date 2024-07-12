@@ -62,7 +62,7 @@ pip install -r ./requirements.txt
 - Start the server
 
 ```sh
-py app.py
+python app.py
 ```
 
 <br/>
