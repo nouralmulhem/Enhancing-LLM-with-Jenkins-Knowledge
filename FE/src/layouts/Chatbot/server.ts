@@ -4,7 +4,7 @@ interface ApiResponse {
   prediction: string;
 }
 
-const chatEndpoint = "https://32e1-34-124-179-223.ngrok-free.app/api";
+const chatEndpoint = "http://127.0.0.1:5000/chatbot/chat";
 
 export const sendQuery = (query: string, personalization:string): Promise<string> => {
   return axios
