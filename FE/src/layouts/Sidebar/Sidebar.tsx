@@ -15,7 +15,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import List from "@mui/material/List";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import HistoryIcon from "@mui/icons-material/History";
+import PhonelinkSetupIcon from "@mui/icons-material/PhonelinkSetup";
 import { drawerWidth } from "../../constants";
 import { useNavigate } from "react-router-dom";
 import { DrawerHeader } from "./styles";
@@ -79,9 +79,9 @@ const Sidebar = (props: SidebarProps) => {
     >
       <DrawerHeader>
         <Box display={"flex"} gap={4} alignItems={"center"} marginLeft={1}>
-          <HistoryIcon />
+          <PhonelinkSetupIcon />
           <Typography variant="h6" fontWeight="bold">
-            History
+            JenAI
           </Typography>
         </Box>
         <IconButton onClick={handleDrawerClose}>
