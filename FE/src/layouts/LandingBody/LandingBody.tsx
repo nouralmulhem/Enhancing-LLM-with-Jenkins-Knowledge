@@ -2,13 +2,19 @@ import { Link } from "react-router-dom";
 import { ButtonsWrapper, Container, Typography } from "./styles";
 
 import { Button } from "@mui/material";
+import { useIsDarkTheme } from "../../contexts/useIsDarkTheme";
 
 const LandingBody = () => {
+  const { isDarkTheme } = useIsDarkTheme();
   return (
     <Container>
       <Typography variant="h2" fontWeight="bold">
         Welcome! to{" "}
-        <Typography variant="h2" fontWeight="bold" color="primary">
+        <Typography
+          variant="h2"
+          fontWeight="bold"
+          color={isDarkTheme ? "primary" : "secondary"}
+        >
           JenAi{" "}
         </Typography>
       </Typography>

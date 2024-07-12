@@ -12,7 +12,7 @@ export const ButtonsWrapper = styled(Box)(() => ({
   gap: "1rem",
 }));
 
-export const Container = styled(Box)(() => ({
+export const Container = styled(Box)(({ theme }) => ({
   height: "100vh",
   display: "flex",
   flexDirection: "column",
@@ -22,7 +22,7 @@ export const Container = styled(Box)(() => ({
   width: "60%",
   margin: "auto",
   textAlign: "center",
-  color: "#fff",
+  color: theme.palette.text.primary,
 }));
 
 export const Typography = styled(MUITypography)<InputProps>(({ color }) => ({

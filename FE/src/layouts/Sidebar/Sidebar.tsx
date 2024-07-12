@@ -8,17 +8,18 @@ import {
   ListItem,
   Typography,
   Box,
+  TextField,
 } from "@mui/material";
 import { ReactNode } from "react";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import List from "@mui/material/List";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import HistoryIcon from "@mui/icons-material/History";
+import PhonelinkSetupIcon from "@mui/icons-material/PhonelinkSetup";
 import { drawerWidth } from "../../constants";
 import { useNavigate } from "react-router-dom";
 import { DrawerHeader } from "./styles";
-import History from "./components/History";
+import { usePersonalization } from "../../contexts/usePersonalization";
 
 type ControllersElement = {
   id: number;
@@ -47,6 +48,7 @@ type SidebarProps = {
 const Sidebar = (props: SidebarProps) => {
   const { open, handleDrawerClose } = props;
   const navigate = useNavigate();
+  const { handleUpdate } = usePersonalization();
 
   const handler = (id: number) => {
     switch (id) {
@@ -77,9 +79,9 @@ const Sidebar = (props: SidebarProps) => {
     >
       <DrawerHeader>
         <Box display={"flex"} gap={4} alignItems={"center"} marginLeft={1}>
-          <HistoryIcon />
+          <PhonelinkSetupIcon />
           <Typography variant="h6" fontWeight="bold">
-            History
+            JenAI
           </Typography>
         </Box>
         <IconButton onClick={handleDrawerClose}>
@@ -87,7 +89,29 @@ const Sidebar = (props: SidebarProps) => {
         </IconButton>
       </DrawerHeader>
 
-      <History />
+      {/* <History /> */}
+      <Divider />
+      <TextField
+        id="outlined-multiline-static"
+        label="Personalize Here"
+        multiline
+        rows={8}
+        // defaultValue="Default Value"
+        placeholder="example: you are a therapist now, act accordingly!"
+        sx={{
+          width: "90%",
+          margin: "15px auto",
+          "& .MuiFormLabel-root": {
+            color: "unset",
+          },
+          "& .MuiInputLabel-shrink": {
+            color: "white",
+          },
+        }}
+        onChange={(e) => {
+          handleUpdate(e.target.value);
+        }}
+      />
       <Divider />
       <List>
         {ControllersElements.map((item) => (

@@ -1,14 +1,14 @@
 import { Avatar, Paper, styled } from "@mui/material";
 import { drawerWidth } from "../../constants";
-import { grey, pink } from "@mui/material/colors";
+import { grey } from "@mui/material/colors";
 
 export const Container = styled(Paper)(({ theme }) => ({
   height: "100%",
   minWidth: "15%",
-  width: "60%",
+  width: "100%",
   margin: 30,
   backgroundColor: theme.palette.secondary.main,
-  color: "white",
+  color: theme.palette.text.primary,
   display: "flex",
   flexDirection: "column",
   padding: 10,
@@ -56,16 +56,19 @@ export const InputWrapper = styled(Paper)(() => ({
   width: "80%",
 }));
 
-export const MsgWrapper = styled(Paper)(() => ({
+export const MsgWrapper = styled(Paper)(({ theme }) => ({
   padding: 16,
   display: "flex",
   alignItems: "center",
   maxWidth: "70%",
-  backgroundColor: grey[900],
+  backgroundColor: theme.palette.mode === "dark" ? grey[900] : grey[300],
 }));
 
-export const UserAvatar = styled(Avatar)(() => ({
-  backgroundColor: pink[500],
+export const UserAvatar = styled(Avatar)(({ theme }) => ({
+  backgroundColor:
+    theme.palette.mode === "dark"
+      ? theme.palette.primary.main
+      : theme.palette.secondary.light,
 }));
 
 export const AssistantAvatar = styled(Avatar)(() => ({
