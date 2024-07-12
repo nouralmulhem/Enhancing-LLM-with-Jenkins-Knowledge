@@ -1,8 +1,12 @@
 from flask import Flask
 from chatbot.routes import chatbot_bp
+from flask_cors import CORS
+
 # import logging
 
 app = Flask(__name__)
+CORS(app)
+
 
 
 # logging.basicConfig(level=logging.DEBUG)
