@@ -2,9 +2,10 @@
 from flask import Blueprint, request, jsonify, Response, stream_with_context
 import logging
 
-from langchain.llms import CTransformers
-from langchain import PromptTemplate, LLMChain
+from langchain_community.llms import CTransformers
+# from langchain.chains import LLMChain
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+from langchain_core.prompts import PromptTemplate
 
 # Configure logging
 logging.basicConfig(filename='app.log', level=logging.ERROR, 
@@ -24,15 +25,17 @@ You are a helpful, respectful and honest assistant. Your answers are always very
 
 prompt = PromptTemplate(template=template, input_variables=["text", "persona"])
 
-llm_chain = LLMChain(prompt=prompt, llm=llm)
+# llm_chain = LLMChain(prompt=prompt, llm=llm)
+llm_chain = prompt | llm
+
 
 history = ''
 
 def process_request(query, persona):
     global history
-    response = llm_chain.invoke({"text": query, "persona": persona})['text']
+    response = llm_chain.invoke({"text": query, "persona": persona})
     history += f'Human: {query}\nAI: {response}\n'
-    print(f'{history}\n\n')
+    # print(f'{history}\n\n')
     return response
 
 @chatbot_bp.route('/chat', methods=['POST'])
