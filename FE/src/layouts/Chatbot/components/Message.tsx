@@ -1,27 +1,30 @@
 import { Box, Typography } from "@mui/material";
 import { MessageEntity } from "../Chatbot";
 import { AssistantAvatar, MsgWrapper, UserAvatar } from "../styles";
+import PersonIcon from "@mui/icons-material/Person";
 
 type MessageProps = {
-  index: number;
   msg: MessageEntity;
 };
 
 const Message = (props: MessageProps) => {
-  const { index, msg } = props;
+  const { msg } = props;
   const isUser = msg.role === "User";
   return (
     <Box
-      key={index}
       display={"flex"}
       justifyContent={isUser ? "flex-start" : "flex-end"}
       alignItems={"center"}
       gap={2}
     >
-      {isUser && <UserAvatar>N</UserAvatar>}
+      {isUser && (
+        <UserAvatar>
+          <PersonIcon />
+        </UserAvatar>
+      )}
 
       <MsgWrapper>
-        <Typography key={index}>{msg.message}</Typography>
+        <Typography>{msg.message}</Typography>
       </MsgWrapper>
 
       {!isUser && (

@@ -1,0 +1,6 @@
+Flask==3.0.3
+flask_cors==4.0.1
+langchain==0.2.7
+langchain-community 
+langchain-core
+ctransformers

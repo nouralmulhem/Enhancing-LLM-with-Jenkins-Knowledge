@@ -4,6 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SendIcon from "@mui/icons-material/Send";
 import { InputWrapper } from "../styles";
+import { useIsDarkTheme } from "../../../contexts/useIsDarkTheme";
 
 type InputProps = {
   setQuery: (query: string) => void;
@@ -14,6 +15,7 @@ type InputProps = {
 
 const Input = (props: InputProps) => {
   const { setQuery, query, disabled, onSubmit } = props;
+  const { isDarkTheme } = useIsDarkTheme();
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -39,7 +41,7 @@ const Input = (props: InputProps) => {
       </IconButton>
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
       <IconButton
-        color="primary"
+        color={isDarkTheme ? "primary" : "secondary"}
         sx={{ p: "10px" }}
         onClick={onSubmit}
         disabled={disabled}
