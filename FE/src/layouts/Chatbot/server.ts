@@ -4,7 +4,8 @@ interface ApiResponse {
   prediction: string;
 }
 
-const chatEndpoint = import.meta.env.VITE_CHAT_ENDPOINT;
+const chatEndpoint =
+  import.meta.env.VITE_SERVER_URL + import.meta.env.VITE_CHAT_ENDPOINT;
 
 export const sendQuery = (query: string, personalization:string): Promise<string> => {
   return axios

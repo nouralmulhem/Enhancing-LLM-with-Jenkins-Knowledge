@@ -28,7 +28,33 @@
 
 <!-- <hr style="background-color: #4b4c60"></hr> -->
 
-<a id = "Started"></a>
+<a id = "Env"></a>
+
+## Setting up env
+
+you may need to update the environment variables set in `BE/.env` and `FE/.env`
+
+### Frontend env setup
+
+- reach to `.env` file in `FE/` directory, you will find the url setup by default to localhost 
+
+```sh
+VITE_SERVER_URL = http://127.0.0.1:5000/
+```
+
+### Backend env setup
+
+- reach to `.env` file in `BE/` directory, you will find also both  `HOST` and `PORT` which are configured to localhost be default
+
+```sh
+FLASK_RUN_HOST = 0.0.0.0
+FLASK_RUN_PORT = 5000
+```
+
+<br/>
+<!-- <hr style="background-color: #4b4c60"></hr> -->
+<a id ="How To Run"></a>
+
 
 ## How To Run
 
@@ -70,6 +96,7 @@ python app.py
 <br/>
 <!-- <hr style="background-color: #4b4c60"></hr> -->
 <a id ="Contributors"></a>
+
 
 ## Contributors
 
