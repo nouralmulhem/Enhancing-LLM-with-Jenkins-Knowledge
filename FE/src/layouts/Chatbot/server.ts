@@ -4,7 +4,7 @@ interface ApiResponse {
   prediction: string;
 }
 
-const chatEndpoint = "http://127.0.0.1:5000/chatbot/chat";
+const chatEndpoint = import.meta.env.VITE_CHAT_ENDPOINT;
 
 export const sendQuery = (query: string, personalization:string): Promise<string> => {
   return axios
