@@ -33,7 +33,7 @@ const LandingBody = () => {
           component={Link}
           to="/dashboard"
         >
-          Start free trial
+          Let's chat
         </Button>
         <Button
           aria-labels="Learn more"

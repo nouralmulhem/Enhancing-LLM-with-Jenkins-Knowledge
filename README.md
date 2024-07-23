@@ -93,6 +93,51 @@ pip install -r ./requirements.txt
 python app.py
 ```
 
+</br>
+<!-- <hr style="background-color: #4b4c60"></hr> -->
+<a id = "GGML"></a>
+
+## Convert fine-tuned to GGML
+
+### CPU model
+
+You can load this full model onto the GPU and run it like you would any other hugging face model, but we are here to take it to the next level of running this model on the CPU.
+
+we are using llama.cpp, so first of all we need to clone the repo
+
+```sh
+git clone https://github.com/ggerganov/llama.cpp.git
+```
+
+Llama.cpp has a script called `convert_hf_to_gguf.py` that is used to convert models to the binary GGML format that can be loaded and run on CPU.
+
+```sh
+python convert_hf_to_gguf.py path/to/fine-tuned/model/  --outtype f16 --outfile path/to/binary/model.bin
+```
+
+This should output a 13GB binary file at the specified `path/to/binary/model.bin` that is ready to run on CPU with the same code that we started with!
+
+### Quantization
+
+Part of the appeal of the GGML library is being able to quantize this 13GB model into smaller models that can be run even faster. There is a tool called quantize in the Llama.cpp repo that can be used to convert the model to different quantization levels.
+
+First you need to build the tools in the Llama.cpp repository.
+
+```sh
+cd llama.cpp
+cmake -B build  
+cmake --build build --config Release 
+```
+
+This will create the tools in the bin directory. You can now use the quantize tool to shrink our model to q8_0 by running:
+
+```sh
+cd build/bin/release
+ llama-quantize.exe path/to/binary/model.bin path/to/binary/merged-q8_0.bin q8_0  
+```
+Now we have a 6.7 GB model at path/to/binary/merged-q8_0.bin
+
+
 <br/>
 <!-- <hr style="background-color: #4b4c60"></hr> -->
 <a id ="Contributors"></a>
