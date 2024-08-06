@@ -14,6 +14,14 @@ def preprocess_data(file_name, questions_col, answers_col, max_sequence_length=1
     dataset: The preprocessed dataset contains the text column
   """ 
   raw_data = pd.read_csv(file_name)
+  
+  # Define condition to drop rows where answers_col has a code tag in
+  condition = raw_data[answers_col].str.contains('<code>')
+  raw_data = raw_data[~condition]
+  
+  # Define condition to drop rows where questions_col has a code tag in
+  condition = raw_data[questions_col].str.contains('<code>')
+  raw_data = raw_data[~condition]
 
   # Combine columns into the desired format
   df = pd.DataFrame(columns=['text'])
@@ -39,3 +47,13 @@ def preprocess_data(file_name, questions_col, answers_col, max_sequence_length=1
     dataset = dataset.select(range(num_samples))
     
   return dataset
+
+if __name__ == "__main__":
+    file_name = '../../datasets/QueryResultsUpdated.csv'
+    questions_col = 'Question Body'
+    answers_col = 'Answer Body'
+    max_sequence_length = 11000
+    num_samples = None
+
+    dataset = preprocess_data(file_name, questions_col, answers_col, max_sequence_length, num_samples)
+    print(len(dataset))
