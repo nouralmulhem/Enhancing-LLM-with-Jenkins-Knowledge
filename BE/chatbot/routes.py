@@ -13,17 +13,19 @@ logging.basicConfig(filename='app.log', level=logging.ERROR,
 
 chatbot_bp = Blueprint('chatbot', __name__)
 
-llm = CTransformers(model="TheBloke/Llama-2-7B-Chat-GGML", model_file = 'llama-2-7b-chat.ggmlv3.q2_K.bin', callbacks=[StreamingStdOutCallbackHandler()])
+llm = CTransformers(model="nouralmulhem/Llama-2-7b-q8", model_file = 'merged-q.bin', callbacks=[StreamingStdOutCallbackHandler()])
 
 template = """
 [INST] <<SYS>>
 You are a helpful, respectful and honest assistant. Your answers are always very brief.
 {persona}
+Current conversation:
+{history}
 <</SYS>>
 {text}[/INST]
 """
 
-prompt = PromptTemplate(template=template, input_variables=["text", "persona"])
+prompt = PromptTemplate(template=template, input_variables=["text", "persona", "history"])
 
 # llm_chain = LLMChain(prompt=prompt, llm=llm)
 llm_chain = prompt | llm
@@ -33,7 +35,7 @@ history = ''
 
 def process_request(query, persona):
     global history
-    response = llm_chain.invoke({"text": query, "persona": persona})
+    response = llm_chain.invoke({"text": query, "persona": persona, "history": history})
     history += f'Human: {query}\nAI: {response}\n'
     # print(f'{history}\n\n')
     return response
