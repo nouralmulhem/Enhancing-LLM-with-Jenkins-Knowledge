@@ -1,5 +1,5 @@
 import pandas as pd
-from datasets import Dataset
+from datasets import Dataset, concatenate_datasets
 
 def preprocess_data(file_name, questions_col, answers_col, max_sequence_length=11000, num_samples=None):
   """
@@ -30,6 +30,8 @@ def preprocess_data(file_name, questions_col, answers_col, max_sequence_length=1
       lambda row: f"<s>[INST] {row[questions_col].strip()} [/INST] {row[answers_col]} </s>",
       axis=1
   )
+  
+  df['text'] = df['text'].str.replace('\n', ' ')
 
   # Calculate the length of each row
   df['row_length'] = df['text'].apply(len)
@@ -49,11 +51,25 @@ def preprocess_data(file_name, questions_col, answers_col, max_sequence_length=1
   return dataset
 
 if __name__ == "__main__":
+    max_sequence_length = 11000
+    num_samples = None
+    
     file_name = '../../datasets/QueryResultsUpdated.csv'
     questions_col = 'Question Body'
     answers_col = 'Answer Body'
-    max_sequence_length = 11000
-    num_samples = None
+    dataset1 = preprocess_data(file_name, questions_col, answers_col, max_sequence_length, num_samples)
 
-    dataset = preprocess_data(file_name, questions_col, answers_col, max_sequence_length, num_samples)
+    file_name = '../../datasets/Jenkins Docs QA.csv'
+    questions_col = 'Question'
+    answers_col = 'Answer'
+    dataset2 = preprocess_data(file_name, questions_col, answers_col, max_sequence_length, num_samples)
+
+    file_name = '../../datasets/Community Questions Refined.csv'
+    questions_col = 'questions'
+    answers_col = 'answers'
+    dataset3 = preprocess_data(file_name, questions_col, answers_col, max_sequence_length, num_samples)
+
+    dataset = concatenate_datasets([dataset1, dataset2, dataset3])
+    # dataset = dataset2
+    dataset.to_csv('../../datasets/final/final2.csv')
     print(len(dataset))
