@@ -162,7 +162,7 @@ This will create the tools in the bin directory. You can now use the quantize to
 
 ```sh
 cd build/bin/release
- llama-quantize.exe path/to/binary/model.bin path/to/binary/merged-q8_0.bin q8_0  
+./llama-quantize.exe path/to/binary/model.bin path/to/binary/merged-q8_0.bin q8_0  
 ```
 Now we have a 6.7 GB model at path/to/binary/merged-q8_0.bin
 
