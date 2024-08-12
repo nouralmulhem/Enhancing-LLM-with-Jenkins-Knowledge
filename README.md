@@ -166,6 +166,10 @@ cd build/bin/release
 ```
 Now we have a 6.7 GB model at path/to/binary/merged-q8_0.bin
 
+To upload the local quantized model on huggingface
+```sh
+huggingface-cli upload username/repo_id path/to/binary/quantized/model.bin model.bin 
+```
 
 <br/>
 <!-- <hr style="background-color: #4b4c60"></hr> -->
