@@ -93,6 +93,8 @@ pip install -r ./requirements.txt
 python app.py
 ```
 
+- note that if you are running the BE server for the first time so it will download the model locally on your machine and it is about 6GB, notice: this is for the first time you are running this only
+
 </br>
 <!-- <hr style="background-color: #4b4c60"></hr> -->
 <a id = "Fine-Tune"></a>
