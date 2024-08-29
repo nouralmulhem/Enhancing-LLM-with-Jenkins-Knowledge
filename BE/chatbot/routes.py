@@ -22,7 +22,8 @@ You are a helpful, respectful and honest assistant. Your answers are always very
 Current conversation:
 {history}
 <</SYS>>
-{text}[/INST]
+Human: {text}
+AI: [/INST]
 """
 
 prompt = PromptTemplate(template=template, input_variables=["text", "persona", "history"])
