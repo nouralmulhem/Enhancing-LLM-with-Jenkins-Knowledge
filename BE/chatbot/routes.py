@@ -13,7 +13,7 @@ logging.basicConfig(filename='app.log', level=logging.ERROR,
 
 chatbot_bp = Blueprint('chatbot', __name__)
 
-llm = CTransformers(model="nouralmulhem/Llama-2-7b-q8", model_file = 'merged-q.bin', callbacks=[StreamingStdOutCallbackHandler()])
+llm = CTransformers(model="nouralmulhem/Llama-2-7b-finetune-q8", model_file = 'model.bin', callbacks=[StreamingStdOutCallbackHandler()])
 
 template = """
 [INST] <<SYS>>
